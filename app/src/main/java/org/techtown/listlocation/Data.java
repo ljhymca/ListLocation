@@ -1,13 +1,13 @@
 package org.techtown.listlocation;
 
 public class Data {
-    private long latitude;
-    private long longitude;
+    private double latitude;
+    private double longitude;
     private int range;
 
     public Data(){}
 
-    public long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
@@ -15,7 +15,7 @@ public class Data {
         this.latitude = latitude;
     }
 
-    public long getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
