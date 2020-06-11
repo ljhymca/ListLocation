@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,11 +27,11 @@ public class ListActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -38,8 +40,8 @@ public class ListActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();//db연동
 
-        databaseReference = database.getReference("id");//테이블 연결
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference = database.getReference("ids");//테이블 연결
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //파이어베이스 db 받아오기
@@ -57,7 +59,12 @@ public class ListActivity extends AppCompatActivity {
                 Log.e("ListActivity", String.valueOf(databaseError.toException()));
             }
         });
+
+
+
         adapter = new CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter);//어댑터 연결
     }
+
+
 }

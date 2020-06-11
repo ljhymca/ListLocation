@@ -33,6 +33,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+        holder.tv_name.setText(String.valueOf(arrayList.get(position).getName()));
         holder.tv_latitude.setText(Double.toString(arrayList.get(position).getLatitude()));
         holder.tv_longitude.setText(Double.toString(arrayList.get(position).getLongitude()));
         holder.tv_range.setText(String.valueOf(arrayList.get(position).getRange()));
@@ -50,9 +51,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
        TextView tv_latitude;
        TextView tv_longitude;
        TextView tv_range;
+       TextView tv_name;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.tv_name = itemView.findViewById(R.id.tv_name);
             this.tv_latitude = itemView.findViewById(R.id.tv_latitude);
             this.tv_longitude = itemView.findViewById(R.id.tv_longitude);
             this.tv_range = itemView.findViewById(R.id.tv_range);
