@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Range;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,18 +30,29 @@ public class ListActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
+    private FloatingActionButton fab;//버튼
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView);
+        fab = findViewById(R.id.fab);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();//data객체를 담아놓을 array list
 
         database = FirebaseDatabase.getInstance();//db연동
+
+        fab.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListActivity.this, RangeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         databaseReference = database.getReference("ids");//테이블 연결
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -59,8 +73,6 @@ public class ListActivity extends AppCompatActivity {
                 Log.e("ListActivity", String.valueOf(databaseError.toException()));
             }
         });
-
-
 
         adapter = new CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter);//어댑터 연결
