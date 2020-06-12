@@ -63,13 +63,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                 @Override
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
+                    Log.e("location","위치");
                     if (pos != RecyclerView.NO_POSITION){
-                        Log.e("error","위치없음");
+                        Data data = arrayList.get(pos);
+                        Log.e("location"," "+data);
                     }
 
 
                 }
             });
+
 
         }
     }
