@@ -100,7 +100,6 @@ public class RangeActivity extends AppCompatActivity implements OnMapReadyCallba
             }
         });
 
-
         naverMap.setOnMapClickListener((point, coord)-> { //지도 화면클릭시
             Toast.makeText(this, getString(R.string.format_map_click, coord.latitude, coord.longitude), Toast.LENGTH_SHORT).show();
             String progress = sizeBarView.getText().toString();

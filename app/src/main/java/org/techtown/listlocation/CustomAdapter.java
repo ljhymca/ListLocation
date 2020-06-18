@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
         CustomViewHolder holder = new CustomViewHolder(view);
         return holder;
+
+
     }
 
     @Override
@@ -63,10 +66,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                 @Override
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
-                    Log.e("location","위치");
                     if (pos != RecyclerView.NO_POSITION){
                         Data data = arrayList.get(pos);
-                        Log.e("location"," "+data);
+                        Log.e("location",""+data);
                     }
 
 
